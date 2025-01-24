@@ -1,0 +1,279 @@
+   
+
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="styles2.css">  
+    <title>AirXplore</title>  
+    <style>
+        /* Add your styles or retain from styles2.css */
+        .results {
+            margin-top: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .flight {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>  
+
+<body>  
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">AirXplore</div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#">My Flights</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="logout-btn" onclick="window.location.href='login.html'">Logout</button>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to AirXplore</h1>
+        <h4>Your gateway to the skies.</h4>
+    </div>
+
+    <!-- Booking Section -->
+    <main>
+        <section class="booking-section">
+            <h2 style="color: rgba(5, 49, 96, 0.8);">Search Flight</h2>
+            <form onsubmit="return false;">                
+                <div class="form-group">
+                    <label for="from">Departure:</label>
+                    <input type="text" id="from" placeholder="Dubai (DXB)">
+                </div>
+                <div class="form-group">
+                    <label for="to">Arrival:</label>
+                    <input type="text" id="to" placeholder="Kochi (KOC)">
+                </div>
+                <div class="form-group">
+                    <label for="date">Departure Date:</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="passengers">Passengers:</label>
+                    <input type="number" id="passengers" placeholder="Number of passengers">
+                </div>
+                <button onclick="searchFlights()" class="enter">Search Flights</button>
+            </form>
+        </section>
+        <section class="results" id="results"></section>
+
+        
+        <!-- Services Section -->
+       <!-- Services Section -->
+       <section class="services">
+        <h2 class="services-heading">Our Services</h2>
+        <div class="services-container">
+            <div class="service-item">
+                <h3>Tranquility</h3>
+                <p>Relax and unwind with premium seating and ambiance.</p>
+            </div>
+            <div class="service-item">
+                <h3>Elevate Your Experience</h3>
+                <p>Designed for discerning travelers, this exclusive lounge 
+                    offers premium amenities, assistance, and private workspaces.</p>
+            </div>
+            <div class="service-item">
+                <h3>A Welcoming Space</h3>
+                <p>Creating a family-friendly atmosphere, the Family Zone is the perfect haven
+                     for parents and children.</p>
+            </div>
+
+            <div class="service-item">
+                <h3>Exclusive Lounges</h3>
+                <p>Enjoy personalized services in premium lounges.</p>
+            </div>
+            <div class="service-item">
+                <h3>Family Zone</h3>
+                <p>Perfect for parents and kids to enjoy their time together.</p>
+            </div>
+            <div class="service-item">
+                <h3>Culinary Delights</h3>
+                <p>Savor gourmet meals and world-class cuisines.</p>
+            </div>
+            
+        </div>
+    </section>
+
+        <br>
+        <!-- Explore Places Section -->
+        <section class="slide">
+            <div style="background-color:rgba(5, 49, 96, 0.8);">
+                <h1 style="color: white;">Explore New Places</h1>
+            </div>   
+            <br>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="slide-group">
+                        <div class="place-card">
+                            <img src="NYC.jpg" alt="New York">
+                            <h2>New York</h2>
+                        </div>
+                        <div class="place-card">
+                            <img src="dubai.jpg" alt="Dubai">
+                            <h2>Dubai</h2>
+                        </div>
+                        <div class="place-card">
+                            <img src="singapore.jpg" alt="Singapore">
+                            <h2>Singapore</h2>
+                        </div>
+                        <div class="place-card">
+                            <img src="thailand.jpg" alt="Thailand">
+                            <h2>Thailand</h2>
+                        </div>
+                    </div>
+                    <div class="slide-group">
+                        <div class="place-card">
+                            <img src="Paris.jpg" alt="Paris">
+                            <h2>Paris</h2>
+                        </div>
+                        <div class="place-card">
+                            <img src="Rome.jpg" alt="Rome" height="160">
+                            <h2>Rome</h2>
+                        </div>
+                        <div class="place-card">
+                            <img src="LA.jpg" alt="LA">
+                            <h2>Los Angeles</h2>
+                        </div>
+                        <div class="place-card">
+                            <img src="china.jpg" alt="China">
+                            <h2>China</h2>
+                        </div>
+                    </div>
+                </div>
+                <button class="prev" onclick="slide(-1)">&#10094;</button>
+                <button class="next" onclick="slide(1)">&#10095;</button>
+            </div>
+        </section>
+        
+        
+    </main>
+    <br>
+    
+    <!-- Footer -->
+    <footer>  
+        <p>&copy; 2025 AirXplore</p>  
+    </footer>  
+<script>
+    
+        // Flight data simulation
+        class Flight {
+            constructor(flightNumber, departure, destination, date, time) {
+                this.flightNumber = flightNumber;
+                this.departure = departure;
+                this.destination = destination;
+                this.date = date;
+                this.time = time;
+            }
+        }
+
+        class FlightSystem {
+            constructor() {
+                this.flightMap = new Map();
+            }
+
+            addFlight(flight) {
+                const key = `${flight.departure}|${flight.destination}|${flight.date}`;
+                if (!this.flightMap.has(key)) {
+                    this.flightMap.set(key, []);
+                }
+                this.flightMap.get(key).push(flight);
+                this.flightMap.get(key).sort((a, b) => a.time.localeCompare(b.time));
+            }
+
+            searchFlights(departure, destination, date) {
+                const key = `${departure}|${destination}|${date}`;
+                return this.flightMap.get(key) || [];
+            }
+        }
+
+        // Initialize flight system
+        const flightSystem = new FlightSystem();
+
+        // Adding sample flights
+        flightSystem.addFlight(new Flight("AI101", "Dubai", "Kochi", "2025-01-24", "08:00"));
+        flightSystem.addFlight(new Flight("AI102", "Dubai", "Kochi", "2025-01-25", "10:00"));
+        flightSystem.addFlight(new Flight("AI103", "Dubai", "Kochi", "2025-01-24", "12:00"));
+
+        flightSystem.addFlight(new Flight("BY101", "Bangalore", "Paris", "2025-01-25", "07:00"));
+        flightSystem.addFlight(new Flight("BY102", "Bangalore", "Paris", "2025-01-25", "15:30"));
+        flightSystem.addFlight(new Flight("BY103", "Bangalore", "Paris", "2025-01-30", "12:40"));
+
+        flightSystem.addFlight(new Flight("CM345", "Mangalore", "Hydrabad", "2025-02-05", "04:00"));
+        flightSystem.addFlight(new Flight("WR104", "Bangalore", "Mumbai", "2025-01-25", "15:30"));
+        flightSystem.addFlight(new Flight("HG334", "Bangalore", "Mumbai", "2025-01-30", "13:40"));
+
+        
+        // Search Flights Function
+        function searchFlights() {
+    const departure = document.getElementById("from").value;
+    const destination = document.getElementById("to").value;
+    const date = document.getElementById("date").value;
+    const resultsContainer = document.getElementById("results");
+
+    // Clear previous results
+    resultsContainer.innerHTML = "";
+
+    // Fetch flights
+    const flights = flightSystem.searchFlights(departure, destination, date);
+
+    if (flights.length === 0) {
+        resultsContainer.innerHTML = "<p>No flights found.</p>";
+    } else {
+        flights.forEach(flight => {
+            const flightDiv = document.createElement("div");
+            flightDiv.className = "flight";
+            flightDiv.innerHTML = `
+                <p class="flight-number">Flight Number: ${flight.flightNumber}</p>
+                <p class="flight-destination"><strong>From:</strong> ${flight.departure} <strong>To:</strong> ${flight.destination}</p>
+                <p><strong>Date:</strong> ${flight.date}</p>
+                <p class="flight-time"><strong>Time:</strong> ${flight.time}</p>
+            `;
+            resultsContainer.appendChild(flightDiv);
+        });
+    }
+}
+
+
+let slideIndex = 0; // Tracks the current slide
+
+function slide(direction) {
+    const carousel = document.querySelector('.carousel'); // The container for all slides
+    const slideGroups = document.querySelectorAll('.slide-group'); // All individual slides
+    const totalSlides = slideGroups.length; // Total number of slides
+
+    const slideWidth = carousel.parentElement.offsetWidth; // Width of the parent container (visible area)
+
+    // Update the slide index based on direction
+    slideIndex += direction;
+
+    // Handle circular navigation
+    if (slideIndex < 0) {
+        slideIndex = totalSlides - 1; // Wrap around to the last slide
+    } else if (slideIndex >= totalSlides) {
+        slideIndex = 0; // Wrap around to the first slide
+    }
+
+    // Move the carousel to the selected slide
+    carousel.style.transform = `translateX(${-slideIndex * slideWidth}px)`;
+}
+
+    </script>
+   
+</body>  
+</html>
